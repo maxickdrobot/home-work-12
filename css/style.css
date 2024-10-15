@@ -1,0 +1,466 @@
+:root {
+    --day: 40s;
+}
+
+
+/* General Resets */
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    overflow: hidden;
+}
+
+img {
+    -webkit-user-drag: none;
+}
+
+
+/* Wrapper Styles */
+.wrapper {
+    width: 100vw;
+    height: 100vh;
+    background: #42A5F5;
+    animation: timesOfDay var(--day) linear infinite;
+}
+
+.wrapper::before,
+.wrapper::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+}
+
+.wrapper::before {
+    background: linear-gradient(transparent, rgba(255, 192, 203, 0.692));
+    animation: shineSunset var(--day) linear infinite;
+}
+
+.wrapper::after {
+    height: 40vh;
+    background: url("../img/bg.png") center 70% no-repeat;
+    background-size: cover;
+    animation: shadow var(--day) infinite;
+
+}
+
+
+/* Sun Styles */
+.sun {
+    position: absolute;
+    width: 7vw;
+    height: 7vw;
+    transform: translate(-50%, 0);
+    animation: sunMoving var(--day) linear infinite;
+
+}
+
+.sun__body {
+    position: absolute;
+    left: 5%;
+    top: 5%;
+    width: 90%;
+    height: 90%;
+    background: rgb(250, 226, 91) url('../img/smile.png') center center no-repeat;
+    background-size: 100%;
+    border-radius: 50%;
+    transition: all 2s;
+}
+
+.sun__body:hover {
+    transform: rotate(-360deg);
+}
+
+.sun__rays {
+    position: absolute;
+    width: 150%;
+    animation: raysMoving 5s linear infinite;
+}
+
+
+/* Island Styles */
+.islands {
+    margin: 0;
+}
+
+.island {
+    position: absolute;
+}
+
+.primary-island {
+    width: 50vw;
+    max-width: 800px;
+    left: 50%;
+    top: 75%;
+    animation: jiggle 3s ease-in-out infinite, shadow var(--day) infinite;
+    z-index: 100;
+}
+
+.primary-island img {
+    width: 100%;
+}
+
+.secondary-island {
+    width: 30vw;
+    max-width: 500px;
+    left: 25%;
+    top: 52%;
+    animation: jiggle 5s ease-in-out infinite, shadow var(--day) infinite;
+    z-index: 99;
+}
+
+.secondary-island__land,
+.secondary-island__additional-land {
+    width: 100%;
+}
+
+.secondary-island__additional-island {
+    position: absolute;
+    left: 30%;
+    top: 0;
+    width: 60%;
+    max-width: 250px;
+}
+
+.garden-island {
+    right: -5%;
+    top: 60%;
+    width: 40vw;
+    max-width: 700px;
+    z-index: 99;
+    animation: jiggle 4s ease-in-out infinite, shadow var(--day) infinite;
+}
+
+.garden-island__land {
+    width: 100%;
+}
+
+
+/* Wigwam Styles */
+.secondary-island__wigwam {
+    position: absolute;
+    width: 50%;
+}
+
+.secondary-island__wigwam {
+    display: block;
+    left: 50%;
+    top: 0;
+    width: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.secondary-island__wigwam:hover {
+    animation: wigwamJiggle 5s;
+}
+
+
+/* Human Styles */
+.human {
+    position: absolute;
+    top: 5%;
+    padding: 10%;
+    background: url(../img/human.png) center center no-repeat;
+    background-size: 100%;
+    transform: translate(-50%, -50%);
+}
+
+.human-left {
+    left: 40%;
+}
+
+.human-right {
+    right: 20%;
+}
+
+.human--dance {
+    animation: dance 1.5s steps(1) infinite, jiggle 1s infinite;
+}
+
+
+/* Green Style*/
+.primary-island__bushes,
+.garden-island__trees {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+    display: flex;
+    justify-content: space-around;
+    transform: scaleX(1);
+
+}
+
+.primary-island__bush {
+    padding: 5%;
+    background: url("../img/bush.png") center center no-repeat;
+    background-size: contain;
+    transition: background 1s ease 12s;
+}
+
+.bush--with-barry {
+    background: url("../img/bush-barry.png") center center no-repeat;
+    background-size: contain;
+    transition: background 1s ease 7s;
+}
+
+.primary-island__bush:nth-child(2) {
+    transform: translate(0, -30%) scale(0.8);
+}
+
+.garden-island__trees {
+    flex-wrap: wrap;
+    top: -12%;
+}
+
+.garden-island__tree {
+    margin-bottom: -20%;
+    padding: 13%;
+    background: url("../img/tree.png") center center no-repeat;
+    background-size: contain;
+    transition: background 1s ease 15s;
+}
+
+.tree--with-fruits {
+    background: url("../img/tree-fruits.png") center center no-repeat;
+    background-size: contain;
+    transition: background 1s ease 8s;
+}
+
+
+/* Cloud Styles */
+.cloud {
+    position: absolute;
+    width: 40%;
+    max-width: 500px;
+    left: -40%;
+    opacity: 0.9;
+    transition: all var(--day);
+    z-index: 9999;
+}
+
+.cloud__body {
+    width: 100%;
+}
+
+.cloud--rainy {
+    animation: cloudMoving 10s linear;
+}
+
+.cloud__rain {
+    position: absolute;
+    width: 100%;
+    height: 50vh;
+    left: 0;
+    top: 100%;
+    background: url("../img/rain.png") center center;
+    animation: rain .2s steps(1) infinite;
+}
+
+
+/* Bonfire Styles */
+.primary-island__bonfire {
+    position: absolute;
+    left: 50%;
+    top: 12%;
+    width: 10%;
+    transform: translate(-50%, -50%);
+    animation: fireLight var(--day) infinite;
+}
+
+.primary-island__bonfire img {
+    position: absolute;
+    width: 100%;
+}
+
+.primary-island__fire {
+    animation: fireJiggle 1.5s ease-in-out infinite;
+}
+
+
+/* Keyframes */
+@keyframes timesOfDay {
+    from, to {
+        background: #001044;
+    }
+    25% {
+        background: #5db6ff;
+    }
+    65% {
+        background: #001044;
+    }
+}
+
+@keyframes shineSunset {
+    from, to {
+        opacity: 1;
+    }
+    25% {
+        opacity: 0;
+    }
+    45% {
+        opacity: 1;
+    }
+    85% {
+        opacity: 0;
+    }
+}
+
+@keyframes raysMoving {
+    from {
+        transform: translate(-15%, -15%) scale(1) rotate(0deg);
+    }
+    25% {
+        transform: translate(-15%, -15%) scale(1.5) rotate(90deg);
+    }
+    50% {
+        transform: translate(-15%, -15%) scale(1) rotate(180deg);
+    }
+    75% {
+        transform: translate(-15%, -15%) scale(1.2) rotate(280deg);
+    }
+    to {
+        transform: translate(-15%, -15%) scale(1) rotate(360deg);
+    }
+}
+
+@keyframes sunMoving {
+    from {
+        left: -10%;
+        top: 100vh;
+    }
+    16% {
+        left: 15vw;
+        top: 35vh;
+    }
+    24% {
+        left: 32vw;
+        top: 15vh;
+    }
+    32% {
+        left: 50vw;
+        top: 10vh;
+    }
+    40% {
+        left: 68vw;
+        top: 15vh;
+    }
+    48% {
+        left: 85vw;
+        top: 35vh;
+    }
+    65%, 70%, to {
+        left: 110vw;
+        top: 100vh;
+    }
+}
+
+@keyframes jiggle {
+    from, to {
+        transform: translate(-50%, -50%);
+    }
+    50% {
+        transform: translate(-50%, -55%);
+    }
+}
+
+@keyframes wigwamJiggle {
+    from, to {
+        transform: translate(-50%, -50%) skew(0, 0);
+    }
+    1% {
+        transform: translate(-50%, -50%) skew(5deg, 0);
+    }
+    10% {
+        transform: translate(-50%, -50%) skew(0, 5deg);
+    }
+    15%, 45%, 65% {
+        transform: translate(-50%, -50%) skew(0, 0);
+    }
+    50% {
+        transform: translate(-50%, -50%) skew(0, 5deg);
+    }
+    60% {
+        transform: translate(-50%, -50%) skew(5deg, 0);
+    }
+}
+
+@keyframes fireJiggle {
+    from, to {
+        transform: translate(0, -30%) skew(-5deg, 10deg) scaleY(1);
+    }
+    25% {
+        transform: translate(0, -40%) skew(-10deg, -5deg) scaleY(1.5);
+    }
+    50% {
+        transform: translate(0, -30%) skew(10deg, -15deg) scaleY(1);
+    }
+    75% {
+        transform: translate(0, -40%) skew(15deg, -10deg) scaleY(1.3);
+    }
+}
+
+@keyframes fireLight {
+    from, to {
+        filter: brightness(150%);
+    }
+    25% {
+        filter: brightness(100%);
+    }
+    65% {
+        filter: brightness(150%);
+    }
+}
+
+@keyframes shadow {
+    from, to {
+        filter: brightness(40%);
+    }
+    25% {
+        filter: brightness(100%);
+    }
+    65% {
+        filter: brightness(40%);
+    }
+}
+
+@keyframes dance {
+    from, to {
+        background: url(../img/heman-active-left.png) center center no-repeat;
+        background-size: 100%;
+    }
+    50% {
+        background: url(../img/heman-active-right.png) center center no-repeat;
+        background-size: 100%;
+    }
+}
+
+@keyframes cloudMoving {
+    from {
+        transform: translate(0, 0);
+    }
+
+    to {
+        transform: translate(150vw, 0);
+    }
+}
+
+
+@keyframes rain {
+    from {
+        transform: translate(0, 0);
+    }
+
+    50%,
+    to {
+        transform: translate(0, -20px);
+    }
+}
